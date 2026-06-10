@@ -74,10 +74,10 @@ class UserInput(BaseModel):
         else:
             return 3
         
-    @app.post('/predict')
-    def predict(data : UserInput):
+@app.post('/predict')
+def predict(data : UserInput):
 
-        input_df = pd.DataFrame([{
+    input_df = pd.DataFrame([{
             'bmi':data.bmi,
             'age_group':data.age_group,
             'lifestyle_risk':data.lifestyle_risk,
@@ -86,6 +86,6 @@ class UserInput(BaseModel):
             'occupation':data.occupation
              }])
         
-        prediction=model.predict(input_df)[0]
+    prediction=model.predict(input_df)[0]
     
-        return JSONResponse(status_code=200, content={"prediction": prediction})
+    return JSONResponse(status_code=200, content={"prediction": prediction})
